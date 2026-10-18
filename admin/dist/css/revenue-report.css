@@ -1,0 +1,154 @@
+.ss-revenue-page .ss-dash-sidebar { width: 198px; }
+.ss-revenue-page .ss-dash-main { margin-left: 198px; }
+.ss-revenue-page .ss-dash-brand { height: 68px; }
+.ss-revenue-page .ss-nav-group > a.is-current { color: #43bbff; }
+.ss-revenue-content { padding: 0 15px; }
+.ss-revenue-hero { min-height: 105px; position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; margin: 0 -15px 8px; padding: 15px 30px; border: 1px solid #1262a4; border-radius: 12px; background: #071a2d url('../../images/dashboard-hero.png') right 42% / 67% auto no-repeat; box-shadow: 0 0 18px rgba(0, 139, 255, .18); }
+.ss-revenue-hero:before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3, 13, 25, .97), rgba(3, 13, 25, .86) 37%, rgba(3, 13, 25, .13) 78%, rgba(3, 13, 25, .42)); }
+.ss-revenue-hero-copy, .ss-revenue-hero-note { position: relative; z-index: 1; }
+.ss-revenue-hero-copy > span { color: #08c6ee; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
+.ss-revenue-hero-copy h1 { margin: 4px 0 3px; color: #f0f5fb; font-size: 28px; font-weight: 700; line-height: 1.1; }
+.ss-revenue-hero-copy h1 i { width: 48px; height: 48px; display: inline-grid; place-items: center; margin-right: 7px; border: 1px solid #168eff; border-radius: 14px; background: linear-gradient(145deg, #0a396b, #071c37); color: #5ec4ff; font-size: 26px; box-shadow: 0 0 13px rgba(0, 142, 255, .4); vertical-align: middle; }
+.ss-revenue-hero-copy p { margin: 0 0 0 58px; color: #c2d6ec; font-size: 15px; line-height: 1.3; }
+.ss-revenue-hero-note { padding-left: 15px; border-left: 2px solid #168bd8; color: #58c9f4; font-size: 15px; font-weight: 700; letter-spacing: 1.7px; line-height: 1.6; }
+.ss-revenue-filter-panel { position: relative; margin-bottom: 9px; padding: 0 11px 10px; border-color: #12518a; background: linear-gradient(115deg, #071a31, #061326); box-shadow: 0 0 14px rgba(0, 117, 220, .09), inset 0 0 20px rgba(0, 88, 166, .04); }
+.ss-revenue-filter-panel:after { content: ''; position: absolute; right: 0; bottom: 0; width: 180px; height: 58px; opacity: .2; pointer-events: none; background: url('../../images/dashboard-car-front.png') center 57% / contain no-repeat; }
+.ss-revenue-filter-heading { min-height: 49px; display: flex; align-items: center; gap: 11px; }
+.ss-revenue-filter-icon { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid #1668a9; border-radius: 10px; background: #0b3157; color: #63c3ff; font-size: 19px; box-shadow: 0 0 10px rgba(0, 142, 255, .24); }
+.ss-revenue-filter-heading h2 { margin: 0; color: #dce9f8; font-size: 17px; font-weight: 700; }
+.ss-revenue-filter-heading p { margin: 2px 0 0; color: #91a9c3; font-size: 14px; }
+.ss-revenue-filter-form { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(220px, 1fr) auto; align-items: end; gap: 11px; max-width: 610px; }
+.ss-revenue-field { min-width: 0; }
+.ss-revenue-field > label { display: block; margin-bottom: 4px; color: #b9cee4; font-size: 14px; font-weight: 600; }
+.ss-revenue-field > label b { color: #ff6c82; }
+.ss-revenue-select-wrap { height: 34px; display: flex; align-items: center; gap: 9px; padding-left: 10px; border: 1px solid #14558b; border-radius: 7px; background: #06172b; color: #9fc7e9; }
+.ss-revenue-select-wrap > i { font-size: 17px; }
+.ss-revenue-select-wrap select { width: 100%; min-width: 0; height: 34px; padding: 0 9px; border: 1px solid #14558b; border-radius: 7px; outline: none; background: #06172b; color: #d9e9fa; font-size: 14px; }
+.ss-revenue-select-wrap select { border: 0; background: transparent; }
+.ss-revenue-select-wrap option { background: #07182b; }
+.ss-revenue-select-wrap:focus-within { border-color: #168eff; box-shadow: 0 0 0 2px rgba(12, 141, 244, .12); }
+.ss-revenue-search-button { min-width: 102px; height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 14px; border: 1px solid #168eff; border-radius: 7px; background: linear-gradient(#168eff, #0878e8); color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 0 12px rgba(0, 119, 255, .2); }
+.ss-revenue-search-button:hover { background: #1b9aff; }
+.ss-revenue-error { position: relative; z-index: 1; margin: 0 0 8px; padding: 7px 10px; border: 1px solid #9a3b4c; border-radius: 6px; background: #301827; color: #ffc2cb; font-size: 15px; }
+.ss-revenue-stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 9px; }
+.ss-revenue-stat-card { --revenue-stat-color: #078cff; min-width: 0; min-height: 72px; position: relative; display: flex; align-items: center; gap: 11px; overflow: hidden; padding: 9px 12px; border: 1px solid color-mix(in srgb, var(--revenue-stat-color) 55%, #122b43); border-radius: 10px; background: linear-gradient(110deg, color-mix(in srgb, var(--revenue-stat-color) 12%, #071424), #081323 62%, #0a1421); box-shadow: inset 0 0 16px color-mix(in srgb, var(--revenue-stat-color) 8%, transparent), 0 0 11px color-mix(in srgb, var(--revenue-stat-color) 8%, transparent); }
+.ss-revenue-stat-card.stat-cyan { --revenue-stat-color: #00c8d8; }
+.ss-revenue-stat-card.stat-purple { --revenue-stat-color: #a844ff; }
+.ss-revenue-stat-card.stat-gold { --revenue-stat-color: #f29a20; }
+.ss-revenue-stat-icon { width: 46px; height: 46px; flex: 0 0 46px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--revenue-stat-color) 55%, transparent); border-radius: 50%; background: color-mix(in srgb, var(--revenue-stat-color) 15%, #071424); color: color-mix(in srgb, var(--revenue-stat-color) 57%, white); font-size: 21px; box-shadow: 0 0 12px color-mix(in srgb, var(--revenue-stat-color) 22%, transparent); }
+.ss-revenue-stat-card > div { min-width: 0; position: relative; z-index: 1; }
+.ss-revenue-stat-card > div > span { display: block; overflow: hidden; color: #a7bad0; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.ss-revenue-stat-card strong { display: block; margin-top: 2px; overflow: hidden; color: #e7f0fc; font-size: 21px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.ss-revenue-stat-card small { display: block; margin-top: 1px; color: #8295ad; font-size: 12px; }
+.ss-revenue-stat-watermark { position: absolute; right: 9px; bottom: 5px; color: var(--revenue-stat-color); opacity: .11; font-size: 43px; }
+.ss-revenue-table-panel { margin-bottom: 10px; padding: 0 10px 7px; border-color: #12518a; box-shadow: 0 0 16px rgba(0, 117, 220, .1), inset 0 0 20px rgba(0, 88, 166, .04); }
+.ss-revenue-table-heading { min-height: 43px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ss-revenue-table-heading h2 { margin: 0; color: #dce9f8; font-size: 17px; font-weight: 700; white-space: nowrap; }
+.ss-revenue-table-heading h2 > i { width: 30px; height: 30px; display: inline-grid; place-items: center; margin-right: 6px; border: 1px solid #1562a1; border-radius: 8px; background: #0b3560; color: #53bdff; font-size: 17px; box-shadow: 0 0 10px rgba(0, 142, 255, .28); }
+.ss-revenue-table-heading h2 small { margin-left: 7px; color: #8faac7; font-size: 14px; font-weight: 400; }
+.ss-revenue-table-tools { display: flex; align-items: center; gap: 6px; }
+.ss-revenue-tool-button { height: 29px; display: inline-flex; align-items: center; gap: 6px; padding: 0 9px; border: 1px solid #165181; border-radius: 6px; background: #081c32; color: #b9d3ed; font-size: 13px; cursor: pointer; }
+.ss-revenue-tool-button:hover { border-color: #1697ed; background: #0c2e4e; color: #fff; }
+.ss-revenue-table-search { width: 125px; height: 29px; display: flex; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid #15395c; border-radius: 6px; background: #07182b; color: #59baff; }
+.ss-revenue-table-search input { width: 100%; border: 0; outline: 0; background: transparent; color: #dceafd; font-size: 13px; }
+.ss-revenue-table-search input::placeholder { color: #7890ab; }
+.ss-revenue-table-wrap { overflow-x: auto; border: 1px solid #0878d5; border-radius: 8px; }
+.ss-revenue-table { width: 100% !important; min-width: 1400px; margin: 0 !important; border-collapse: separate !important; border-spacing: 0; color: #d0dfef; font-size: 13px; }
+.ss-revenue-table thead th { height: 31px; padding: 0 7px; border-top: 0 !important; border-bottom: 1px solid #184163 !important; background: #0a2038; color: #a9c0db; font-size: 13px; font-weight: 600; text-align: left; vertical-align: middle; white-space: nowrap; }
+.ss-revenue-table tbody td { height: 29px; padding: 4px 7px; border-top: 0 !important; border-bottom: 1px solid rgba(12, 71, 123, .65) !important; background: rgba(3, 17, 33, .72); color: #c7d8eb; vertical-align: middle; white-space: nowrap; }
+.ss-revenue-table tbody tr:last-child td { border-bottom: 0 !important; }
+.ss-revenue-table tbody tr:hover td { background: #09213a; }
+.ss-revenue-table tbody tr.ss-revenue-empty-row td { height: 76px; color: #9eb5ce; font-size: 15px; text-align: center; }
+.ss-revenue-empty-row i { margin-right: 6px; color: #52baff; }
+.ss-revenue-table td:nth-child(9), .ss-revenue-table td:nth-child(11), .ss-revenue-table td:nth-child(13), .ss-revenue-table td:nth-child(14), .ss-revenue-table td:nth-child(15), .ss-revenue-table td:nth-child(17) { color: #d6e8fb; }
+.ss-revenue-category { display: inline-block; max-width: 100%; overflow: hidden; padding: 3px 7px; border: 1px solid #0874be; border-radius: 10px; background: #074c85; color: #d8efff; font-size: 12px; line-height: 1; text-overflow: ellipsis; vertical-align: middle; white-space: nowrap; }
+.ss-revenue-table-footer { min-height: 32px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #9db3cd; font-size: 13px; }
+.ss-revenue-table-footer .dataTables_info { padding: 0; color: #9db3cd; }
+.ss-revenue-table-footer .pagination { gap: 4px; margin: 0; }
+.ss-revenue-table-footer .page-item .page-link { min-width: 26px; height: 24px; display: grid; place-items: center; padding: 0 6px; border: 1px solid #173a5e; border-radius: 5px !important; background: #071b31; color: #a8bfd8; font-size: 12px; }
+.ss-revenue-table-footer .page-item.active .page-link { border-color: #0b8cff; background: #087df0; color: #fff; box-shadow: 0 0 8px rgba(0, 140, 255, .35); }
+.ss-revenue-table-footer .page-item.disabled .page-link { border-color: #122d49; background: #071525; color: #58718c; }
+.ss-revenue-page .ss-dash-footer { min-height: 24px; }
+
+@media (max-width: 1120px) {
+    .ss-revenue-filter-form { grid-template-columns: minmax(180px, 1fr) auto; gap: 8px; }
+    .ss-revenue-stat-card { gap: 8px; padding: 9px; }
+    .ss-revenue-stat-icon { width: 39px; height: 39px; flex-basis: 39px; }
+    .ss-revenue-stat-card strong { font-size: 18px; }
+}
+@media (max-width: 900px) {
+    .ss-revenue-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ss-revenue-table-heading { align-items: flex-start; flex-direction: column; padding: 8px 0; }
+    .ss-revenue-table-tools { width: 100%; }
+    .ss-revenue-table-search { flex: 1; }
+}
+@media (max-width: 760px) {
+    .ss-revenue-page .ss-dash-sidebar { width: 188px; transform: translateX(-100%); }
+    .ss-revenue-page .ss-dash-main { margin-left: 0; }
+    .ss-revenue-page .ss-dash-layout.sidebar-collapsed .ss-dash-sidebar { width: 188px; transform: translateX(0); }
+    .ss-revenue-page .ss-dash-content { padding: 0 11px; }
+    .ss-revenue-page .ss-sidebar-toggle { display: block; }
+    .ss-revenue-hero { min-height: 112px; margin-right: -11px; margin-left: -11px; padding: 14px 18px; background-size: cover, 85% auto; }
+    .ss-revenue-hero-note { display: none; }
+    .ss-revenue-filter-form { grid-template-columns: minmax(0, 1fr) auto; }
+    .ss-revenue-search-button { justify-self: start; }
+}
+@media (max-width: 520px) {
+    .ss-revenue-hero { min-height: 118px; background-size: cover, 100% auto; }
+    .ss-revenue-hero-copy h1 { font-size: 24px; }
+    .ss-revenue-hero-copy h1 i { width: 39px; height: 39px; font-size: 22px; }
+    .ss-revenue-hero-copy p { margin-left: 46px; font-size: 14px; }
+    .ss-revenue-filter-panel { padding-right: 8px; padding-left: 8px; }
+    .ss-revenue-filter-form { grid-template-columns: minmax(0, 1fr); }
+    .ss-revenue-search-button { width: auto; justify-self: end; }
+    .ss-revenue-stat-grid { gap: 7px; }
+    .ss-revenue-stat-card { min-height: 70px; gap: 7px; padding: 7px; }
+    .ss-revenue-stat-icon { width: 32px; height: 32px; flex-basis: 32px; font-size: 17px; }
+    .ss-revenue-stat-card > div > span { font-size: 13px; }
+    .ss-revenue-stat-card strong { font-size: 16px; }
+    .ss-revenue-stat-watermark { right: 2px; font-size: 33px; }
+    .ss-revenue-table-panel { padding-right: 7px; padding-left: 7px; }
+    .ss-revenue-table-tools { flex-wrap: wrap; }
+    .ss-revenue-table-search { flex-basis: 100%; order: 2; }
+    .ss-revenue-table-footer { align-items: flex-start; flex-direction: column; padding: 6px 0; }
+}
+@media print {
+    .ss-revenue-page { background: #fff !important; color: #111 !important; }
+    .ss-revenue-page .ss-dash-sidebar, .ss-revenue-page .ss-dash-topbar, .ss-revenue-hero, .ss-revenue-filter-panel, .ss-revenue-stat-grid, .ss-revenue-table-tools, .ss-revenue-table-footer, .ss-dash-footer { display: none !important; }
+    .ss-revenue-page .ss-dash-main { margin: 0 !important; }
+    .ss-revenue-page .ss-revenue-content { padding: 0 !important; }
+    .ss-revenue-report-stage { min-height: 0 !important; padding: 0 !important; border: 0 !important; background: none !important; }
+    .ss-revenue-table-panel { border: 0 !important; box-shadow: none !important; }
+    .ss-revenue-table-wrap { overflow: visible !important; border: 0 !important; }
+    .ss-revenue-table { min-width: 0 !important; font-size: 12pt !important; }
+    .ss-revenue-table thead th, .ss-revenue-table tbody td { padding: 3px !important; color: #111 !important; background: #fff !important; }
+}
+
+.ss-revenue-report-stage {
+    min-height: 370px;
+    margin-bottom: 10px;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid #12518a;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(4, 15, 28, .96) 0%, rgba(4, 15, 28, .75) 44%, rgba(4, 15, 28, .52) 100%), url('../../images/dashboard-car-city.jpg') center 58% / cover no-repeat;
+    box-shadow: 0 0 16px rgba(0, 117, 220, .12), inset 0 0 28px rgba(0, 88, 166, .08);
+}
+.ss-revenue-stat-grid { gap: 14px; margin-bottom: 0; }
+.ss-revenue-stat-card { min-height: 104px; gap: 13px; padding: 13px 15px; }
+.ss-revenue-stat-card.stat-teal { --revenue-stat-color: #00c8a0; }
+.ss-revenue-stat-card.stat-blue { --revenue-stat-color: #168eff; }
+.ss-revenue-stat-card.stat-purple { --revenue-stat-color: #a844ff; }
+.ss-revenue-stat-card.stat-gold { --revenue-stat-color: #f29a20; }
+.ss-revenue-stat-icon { width: 49px; height: 49px; flex-basis: 49px; }
+.ss-revenue-stat-card > div > span { font-size: 15px; }
+.ss-revenue-stat-card strong { font-size: 23px; }
+.ss-revenue-stat-card small { margin-top: 4px; font-size: 13px; }
+.ss-revenue-table-panel { margin-top: 14px; }
+
+@media (max-width: 520px) {
+    .ss-revenue-report-stage { min-height: 330px; padding: 8px; background-position: center bottom; }
+    .ss-revenue-stat-card { min-height: 84px; gap: 7px; padding: 8px; }
+    .ss-revenue-stat-icon { width: 34px; height: 34px; flex-basis: 34px; }
+    .ss-revenue-stat-card strong { font-size: 17px; }
+}
