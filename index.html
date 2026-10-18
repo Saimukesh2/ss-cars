@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SS CARS — Exact Reference UI</title>
+<style>
+:root{
+  --bg:#03080d; --panel:#08121a; --panel2:#0b1720; --line:rgba(255,255,255,.11);
+  --muted:#9ca7b0; --white:#f6f7f8; --red:#ef1827; --blue:#3158ff;
+  --max:1510px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;font-size:15px}
+button,input,select{font:inherit} button,a[href],select{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:auto;padding:0 20px}
+.nav{height:58px;display:flex;align-items:center;justify-content:space-between;position:absolute;top:0;left:0;right:0;z-index:10;padding:0 28px}
+.logo{display:flex;gap:9px;align-items:center;font-weight:800;font-size:17px}.logoMark{width:28px;height:20px;border:2px solid var(--red);border-radius:48% 52% 40% 40%;position:relative}.logoMark:after{content:"";position:absolute;left:5px;right:5px;bottom:-4px;height:5px;border:1px solid var(--red);border-radius:50%}
+.logo small{display:block;font-size:7px;font-weight:500;color:#c4cbd0;margin-top:1px}
+.navlinks{display:flex;gap:31px;font-size:11px;color:#e2e5e7}.navlinks a:first-child{color:white;border-bottom:1px solid var(--red);padding-bottom:6px}
+.live{background:var(--red);border:0;color:white;padding:7px 15px;border-radius:6px;font-size:10px;font-weight:700}
+.hero{min-height:430px;position:relative;overflow:hidden;background:linear-gradient(90deg,#03080d 0%,rgba(3,8,13,.72) 38%,rgba(3,8,13,.08) 70%),url('assets/hero.jpg') center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22),transparent 45%,rgba(3,8,13,.72))}
+.heroContent{position:relative;z-index:2;padding:128px 0 30px;max-width:850px}
+.hero h1{font-size:48px;line-height:1.05;font-style:italic;margin:0 0 13px;font-weight:900;letter-spacing:.2px}
+.hero h1 span{color:var(--red);display:block}
+.hero p{max-width:520px;line-height:1.45;color:#e0e4e6;margin:0 0 18px;font-size:15px}
+.ctas{display:flex;gap:10px}.primary{background:var(--red);color:#fff;border:0;border-radius:5px;padding:10px 18px;font-weight:700;font-size:15px}.ghost{background:transparent;color:#fff;border:0;font-size:11px;display:flex;gap:8px;align-items:center}.play{width:19px;height:19px;border:1px solid #fff;border-radius:50%;display:grid;place-items:center;font-size:8px}
+.stats{display:flex;gap:0;margin-top:21px}.stat{min-width:105px;padding:8px 15px;border-left:1px solid var(--line)}.stat:first-child{border-left:0}.stat b{font-size:14px}.stat span{display:block;color:#aab3b9;font-size:7px;margin-top:2px}
+.mainGrid{display:grid;grid-template-columns:1fr;gap:0;max-width:var(--max);margin:auto}
+.left,.right{padding:24px 28px 0}.right{border-left:0;width:100%}
+.sectionHead{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px}.sectionHead h2{font-size:21px;margin:0;text-transform:uppercase}.sectionHead p{font-size:12px;color:#9ea7ad;margin:4px 0}.view{font-size:12px;color:#fff}
+.learnGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.learnCard{height:240px;border:1px solid var(--line);background:linear-gradient(180deg,#0d1720,#071017);border-radius:8px;overflow:hidden;position:relative}.learnCard img{width:100%;height:130px;object-fit:cover}.learnCard .txt{padding:14px 15px}.learnCard b{font-size:16px}.learnCard p{font-size:11px;color:#a6b0b6;line-height:1.35;margin:4px 0}.arrow{position:absolute;right:8px;bottom:8px;width:19px;height:19px;border-radius:4px;background:#17212a;display:grid;place-items:center;color:#aeb8bf}
+.field input{width:100%;background:#071018;color:#dfe3e6;border:1px solid #26323b;border-radius:4px;padding:11px;font-size:11px}
+.find{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px 13px;background:radial-gradient(circle at 75% 50%,rgba(78,51,210,.42),transparent 45%),linear-gradient(90deg,#0b1822,#101332);display:flex;justify-content:space-between;align-items:center}.find h3{margin:0;font-size:20px}.find p{margin:5px 0 0;color:#aab2b8;font-size:12px}.find button{background:#3449dc;border:0;color:#fff;border-radius:4px;padding:12px 20px;font-size:12px;font-weight:700}
+.search{margin-top:0;border:1px solid var(--line);border-radius:10px;padding:18px;background:#08131c}.tabs{display:flex;gap:38px;margin:-12px -12px 12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px}.tabs .active{font-weight:700;border-bottom:2px solid var(--red);padding-bottom:8px;margin-bottom:-11px}.fields{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 210px;gap:16px}.field label{display:block;font-size:10px;color:#b4bdc3;margin-bottom:4px}.field select{width:100%;background:#071018;color:#dfe3e6;border:1px solid #26323b;border-radius:4px;padding:11px;font-size:11px}.searchBtn{background:var(--red);border:0;color:#fff;border-radius:6px;padding:0 24px;font-weight:700;font-size:12px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;border:1px solid var(--line);border-radius:8px;background:#08131c}.trust div{padding:18px;border-right:1px solid var(--line)}.trust div:last-child{border:0}.trust b{font-size:13px}.trust span{display:block;color:#8f9aa2;font-size:10px;margin-top:5px}
+.body{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px 16px}.bodyGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.bodyCard{background:#0b1720;border:1px solid var(--line);border-radius:6px;overflow:hidden}.bodyCard img{height:120px;width:100%;object-fit:cover}.bodyCard div{padding:12px}.bodyCard b{font-size:14px}.bodyCard span{display:block;font-size:10px;color:#a5afb6;margin-top:3px}
+.knowledge{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px;background:linear-gradient(90deg,#140b0e,#330b10)}.knowGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.knowCard{height:150px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:7px;overflow:hidden;position:relative}.knowCard img{position:absolute;right:0;top:0;width:58%;height:100%;object-fit:cover;opacity:.85}.knowCard div{position:relative;z-index:2;padding:16px;width:60%}.knowCard b{font-size:14px}.knowCard p{font-size:10px;color:#b6bdc1;line-height:1.3}.knowCard a{font-size:10px;color:#fff}
+.emotion{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px;background:#07121b}.emotionGrid{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:14px}.emotionLead{background:linear-gradient(90deg,#061019,#0b171e);padding:20px;border-radius:8px}.emotionLead h2{font-size:25px;font-style:italic;margin:0}.emotionLead h2 span{color:var(--red)}.emotionLead p{font-size:11px;color:#aab3b8;line-height:1.45;max-width:180px}.emotionCard{height:250px;border-radius:6px;overflow:hidden;position:relative;background:#111}.emotionCard img{width:100%;height:100%;object-fit:cover}.emotionCard:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.85))}.emotionText{position:absolute;z-index:2;bottom:10px;left:9px}.emotionText b{font-size:14px}.emotionText span{display:block;color:#b8c0c4;font-size:10px;margin-top:5px}
+.top{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px;background:#07131d}.cars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.car{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#0a151e}.car img{height:170px;width:100%;object-fit:cover}.carInfo{padding:14px}.badge{font-size:9px;background:var(--red);padding:3px 5px;border-radius:3px}.car h3{font-size:14px;margin:7px 0 3px}.price{font-size:15px;color:var(--red);font-weight:800}.spec{font-size:9px;color:#9ba5ab;margin-top:5px}
+.stories{margin-top:20px;border:1px solid var(--line);border-radius:8px;padding:18px;background:#07131d}.storiesGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.story{border:1px solid var(--line);border-radius:8px;padding:16px;background:#0c1720}.avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#e1b37a,#6a3d24);display:inline-block;vertical-align:middle;margin-right:7px}.stars{color:#f4b400;font-size:9px;margin-top:7px}.story p{font-size:11px;color:#d5d9dc;line-height:1.4}
+.journey{margin-top:24px;border:1px solid var(--line);border-radius:8px;min-height:150px;position:relative;overflow:hidden;background:linear-gradient(90deg,#14070a,#060d15)}.journey img{position:absolute;right:27%;top:0;height:100%;width:42%;object-fit:cover;opacity:.95}.journeyTxt{position:relative;z-index:2;padding:28px 22px}.journeyTxt h2{font-size:23px;font-style:italic;margin:0 0 4px}.journeyTxt p{font-size:11px;color:#b7bfc5}.steps{position:absolute;right:11px;top:12px;z-index:3;display:flex;gap:20px}.step{text-align:center;font-size:10px;color:#c0c6ca}.circle{width:42px;height:42px;border:1px solid var(--red);border-radius:50%;display:grid;place-items:center;margin:auto auto 4px;color:#fff}
+.footer{border-top:1px solid var(--line);margin-top:0;padding:17px 20px 13px;background:#02070b}.footerGrid{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.3fr;gap:20px}.footer h4{font-size:8px;margin:0 0 8px}.footer a,.footer p{font-size:7px;color:#909aa1;display:block;margin:5px 0}.subscribe{display:flex}.subscribe input{flex:1;background:#0a131b;border:1px solid var(--line);padding:7px;color:#fff;font-size:7px}.subscribe button{background:var(--red);color:#fff;border:0;padding:0 10px;font-size:7px}
+
+
+/* Keep the reference page compact and stacked at desktop widths. */
+@media(min-width:1001px){
+  .mainGrid{display:block;max-width:1510px;}
+  .left,.right{width:100%;padding:14px 20px 0;}
+  .right{margin-top:0;}
+  .learnGrid{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .bodyGrid{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .knowGrid{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .emotionGrid{grid-template-columns:1.35fr repeat(4,minmax(0,1fr));}
+  .cars{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+
+@media(max-width:1000px){.mainGrid{grid-template-columns:1fr}.right{border-left:0;width:100%}.nav{height:auto;min-height:58px;flex-wrap:wrap;gap:10px;padding-top:9px;padding-bottom:9px;background:rgba(3,8,13,.92)}.navlinks{display:flex;order:3;width:100%;gap:20px;overflow-x:auto;padding:4px 0}.hero{min-height:315px}.heroContent{padding-top:84px}.fields{grid-template-columns:1fr 1fr}.searchBtn{height:32px}.emotionGrid{grid-template-columns:1fr 1fr}.emotionLead{grid-column:1/-1}.cars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.wrap{padding:0 14px}.nav{padding:0 14px}.hero h1{font-size:27px}.stats{overflow:auto}.stat{min-width:92px}.learnGrid,.bodyGrid,.knowGrid{grid-template-columns:1fr 1fr}.trust{grid-template-columns:1fr 1fr}.fields{grid-template-columns:1fr}.emotionGrid,.cars,.storiesGrid{grid-template-columns:1fr}.steps{display:none}.journey img{right:-20%;width:70%;opacity:.35}.footerGrid{grid-template-columns:1fr 1fr}.logo{font-size:14px}}
+
+.heroTitle{
+  margin:0 0 20px;
+  font-size:52px;
+  line-height:1.02;
+  font-style:italic;
+  font-weight:900;
+  letter-spacing:-1px;
+  text-transform:uppercase;
+  max-width:900px;
+}
+
+.heroTitle .line{
+  display:block;
+  position:relative;
+  width:max-content;
+  max-width:100%;
+}
+
+/* DREAM */
+.heroTitle .dream{
+  color:#ffffff;
+}
+
+/* ADVENTURE */
+.heroTitle .adventure{
+  color:#f1f3f4;
+}
+
+/* THRILL */
+.heroTitle .thrill{
+  color:var(--red);
+  text-shadow:
+    0 0 18px rgba(239,24,39,.22);
+}
+
+/* EXTRAORDINARY */
+.heroTitle .extraordinary{
+  color:#ffffff;
+}
+
+.heroTitle .extraordinary em{
+  color:var(--red);
+  font-style:italic;
+}
+
+/* LUXURY - final visual impact */
+.heroTitle .luxury{
+  margin-top:4px;
+  color:#ffffff;
+  font-size:1.08em;
+  letter-spacing:-1.5px;
+}
+
+.heroTitle .luxury em{
+  color:var(--red);
+  font-style:italic;
+  text-shadow:
+    0 0 22px rgba(239,24,39,.30);
+}
+.hero{
+  min-height:620px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(
+      90deg,
+      #03080d 0%,
+      rgba(3,8,13,.88) 25%,
+      rgba(3,8,13,.52) 52%,
+      rgba(3,8,13,.08) 78%
+    ),
+    url('assets/hero.jpg') center/cover;
+}
+.heroContent{
+  position:relative;
+  z-index:2;
+  padding:145px 0 40px;
+  max-width:1000px;
+}
+.hero p{
+  max-width:580px;
+  line-height:1.55;
+  color:#c5cdd2;
+  margin:0 0 24px;
+  font-size:16px;
+  letter-spacing:.2px;
+}
+.heroContent:before{
+  content:"";
+  position:absolute;
+  left:-120px;
+  top:100px;
+  width:600px;
+  height:400px;
+  background:radial-gradient(
+    circle,
+    rgba(239,24,39,.10) 0%,
+    rgba(239,24,39,.04) 35%,
+    transparent 70%
+  );
+  pointer-events:none;
+  z-index:-1;
+}
+@media(max-width:600px){
+
+  .hero{
+    min-height:620px;
+  }
+
+  .heroContent{
+    padding-top:125px;
+  }
+
+  .heroTitle{
+    font-size:31px;
+    line-height:1.04;
+    letter-spacing:-.5px;
+  }
+
+  .heroTitle .luxury{
+    font-size:1.08em;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+}
+
+/* ================================
+   INTRO / ENGINE-START SPLASH SCREEN
+   (new — added on top, site CSS above is untouched)
+   ================================ */
+html.intro-lock, html.intro-lock body{
+  overflow:hidden;
+  height:100%;
+}
+#introScreen{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  height:100dvh; /* correct full-height on mobile browsers */
+  z-index:9999;
+  background:#000;
+  overflow:hidden;
+  transition:opacity .8s ease;
+  opacity:1;
+}
+#introScreen.intro-hidden{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* The image IS the screen — full-bleed, cropped to cover, never squeezed */
+#introImg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+/* Whole image is the clickable "start engine" button — the image already
+   contains all the wording ("Click the key to start engine" etc.) */
+#keyBtn{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+}
+
+/* subtle pulsing glow near the key once engine has started, no extra text/images added */
+#introScreen.intro-started #introImg{
+  animation:engineShake .35s ease-in-out infinite;
+}
+@keyframes engineShake{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-2px,0)}
+  75%{transform:translate(2px,0)}
+}
+
+
+
+/* ================================
+   ANIMATED INTRO CLICK INDICATOR
+   Added only as a visual guide.
+   Existing intro image + engine logic remain unchanged.
+   ================================ */
+#introCursor{
+  position:absolute;
+  left:50%;
+  top:82%;
+  width:34px;
+  height:34px;
+  z-index:4;
+  pointer-events:none;
+  transform:translate(-50%,-50%) rotate(-12deg);
+  animation:introCursorMove 1.65s ease-in-out infinite;
+  filter:drop-shadow(0 0 8px rgba(239,24,39,.45));
+}
+#introCursor:before{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:2px;
+  width:0;
+  height:0;
+  border-top:28px solid #fff;
+  border-right:16px solid transparent;
+  filter:drop-shadow(0 0 0 #111);
+}
+#introCursor:after{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:5px;
+  width:0;
+  height:0;
+  border-top:22px solid #111;
+  border-right:13px solid transparent;
+}
+
+#introClickPulse{
+  position:absolute;
+  left:50%;
+  top:78%;
+  width:44px;
+  height:44px;
+  z-index:3;
+  pointer-events:none;
+  border:2px solid rgba(239,24,39,.85);
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(.55);
+  opacity:.75;
+  animation:introPulse 1.65s ease-out infinite;
+}
+
+#introScreen.intro-started #introCursor{
+  animation:introCursorClick .45s ease-out forwards;
+}
+#introScreen.intro-started #introClickPulse{
+  animation:introPulseClick .65s ease-out forwards;
+}
+
+@keyframes introCursorMove{
+  0%,100%{transform:translate(-50%,-50%) rotate(-12deg)}
+  38%{transform:translate(-50%,-68%) rotate(-12deg)}
+  58%{transform:translate(-50%,-50%) rotate(-12deg)}
+}
+
+@keyframes introPulse{
+  0%{transform:translate(-50%,-50%) scale(.45);opacity:0}
+  35%{opacity:.7}
+  100%{transform:translate(-50%,-50%) scale(1.35);opacity:0}
+}
+
+@keyframes introCursorClick{
+  0%{transform:translate(-50%,-50%) rotate(-12deg) scale(1)}
+  45%{transform:translate(-50%,-43%) rotate(-12deg) scale(.82)}
+  100%{transform:translate(-50%,-50%) rotate(-12deg) scale(1)}
+}
+
+@keyframes introPulseClick{
+  0%{transform:translate(-50%,-50%) scale(.5);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+}
+
+@media(max-width:600px){
+  #introCursor{
+    top:82%;
+    width:29px;
+    height:29px;
+  }
+  #introClickPulse{top:78%;width:38px;height:38px}
+}
+
+#mainSite{display:none}
+#mainSite.site-revealed{
+  display:block;
+  animation:siteFadeIn .9s ease both;
+}
+@keyframes siteFadeIn{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+body{font-size:13px}
+.hero{min-height:315px}
+.heroContent{padding:84px 0 18px;max-width:720px}
+.heroTitle{font-size:31px;line-height:1.05;letter-spacing:.2px;margin:0 0 13px}
+.hero p{max-width:380px;font-size:11px}
+.primary{font-size:11px}
+.mainGrid{display:block;max-width:1510px}
+.left,.right{width:100%;padding:14px 20px 0}
+.right{border-left:0;margin-top:0}
+.sectionHead h2{font-size:14px}
+.sectionHead p,.view{font-size:9px}
+.learnGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.learnCard{height:155px}
+.learnCard img{height:82px}
+.learnCard .txt{padding:8px 10px}
+.learnCard b{font-size:11px}
+.learnCard p{font-size:8px}
+.find{margin-top:13px;padding:11px 13px}
+.find h3{font-size:13px}
+.find p{font-size:8px}
+.find button,.find>a{display:inline-block;background:#3449dc;color:#fff;border:0;border-radius:4px;padding:8px 13px;font-size:9px;font-weight:700;white-space:nowrap}
+.search{margin-top:13px;padding:12px}
+.tabs{gap:27px;font-size:9px}
+.fields{grid-template-columns:repeat(4,minmax(0,1fr)) 106px;gap:9px}
+.field label{font-size:7px}
+.field select,.field input{padding:7px;font-size:8px}
+.searchBtn{display:flex;align-items:center;justify-content:center;padding:0 8px;font-size:9px;text-align:center}
+.trust{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:13px}
+.trust div{padding:12px}
+.trust b{font-size:9px}
+.trust span{font-size:7px}
+.body,.knowledge,.emotion,.top,.stories{margin-top:13px;padding:11px}
+.bodyGrid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.bodyCard img{height:64px}
+.bodyCard div{padding:6px}
+.bodyCard b{font-size:9px}
+.bodyCard span{font-size:7px}
+.knowGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.knowCard{height:95px}
+.knowCard div{padding:10px}
+.knowCard b{font-size:8px}
+.knowCard p{font-size:6.5px}
+.knowCard a{font-size:7px}
+.emotionGrid{grid-template-columns:1.35fr repeat(4,minmax(0,1fr));gap:7px}
+.emotionLead{grid-column:auto;padding:12px}
+.emotionLead h2{font-size:17px}
+.emotionLead p{font-size:8px}
+.emotionCard{height:175px}
+.emotionText b{font-size:10px}
+.emotionText span{font-size:7px}
+.cars{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.car img{height:92px}
+.carInfo{padding:8px}
+.badge{font-size:6px}
+.car h3{font-size:9px}
+.price{font-size:10px}
+.spec{font-size:6.5px}
+.storiesGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.story{padding:10px}
+.story p{font-size:8px}
+.journey{min-height:120px;margin-top:13px}
+.journeyTxt{padding:20px 14px}
+.journeyTxt h2{font-size:17px}
+.journey img{right:27%;width:42%;opacity:.95}
+.steps{gap:12px}
+.circle{width:34px;height:34px}
+.footer{padding:14px}
+.footerGrid{gap:14px}
+.live{display:inline-block}
+
+@media(max-width:1000px){
+  .nav{height:58px;min-height:0;flex-wrap:nowrap;gap:10px;padding:0 14px;background:transparent}
+  .navlinks{order:initial;width:auto;gap:clamp(8px,2vw,20px);overflow:visible;padding:0;white-space:nowrap;font-size:9px}
+}
+@media(max-width:600px){
+  .left,.right{padding-left:14px;padding-right:14px}
+  .nav{height:auto;flex-wrap:wrap;padding:8px 14px;background:rgba(3,8,13,.92)}
+  .navlinks{order:3;width:100%;overflow-x:auto}
+  .heroTitle{font-size:27px}
+  .fields{grid-template-columns:1fr 1fr}
+  .searchBtn{height:32px;grid-column:1/-1}
+  .learnGrid,.knowGrid,.bodyGrid{grid-template-columns:1fr 1fr}
+  .trust{grid-template-columns:1fr 1fr}
+  .emotionGrid,.cars,.storiesGrid{grid-template-columns:1fr}
+  .emotionLead{grid-column:1/-1}
+  .steps{display:none}
+  .journey img{right:-20%;width:70%;opacity:.35}
+  .footerGrid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================
+     INTRO / ENGINE-START SPLASH SCREEN
+     ================================ -->
+<div id="introScreen">
+  <!-- Full-bleed cover image — all wording ("Unleash the Beast", "Click the key
+       to start engine", etc.) is already baked into this image, so no text
+       is duplicated in HTML/CSS on top of it -->
+  <img id="introImg" src="assets/beast-bg.jpg" alt="Click the key to start engine">
+  <button id="keyBtn" aria-label="Start Engine"></button>
+
+  <!-- Visual mouse pointer and click pulse. These do not replace the image
+       or change the existing full-screen click target. -->
+  <span id="introCursor" aria-hidden="true"></span>
+  <span id="introClickPulse" aria-hidden="true"></span>
+</div>
+
+<!-- Put your downloaded engine-start mp3 file at this path -->
+<audio id="engineSound" src="assets/engine.mp3" preload="auto"></audio>
+
+<!-- ================================
+     MAIN SITE (your original content — untouched, just wrapped
+     so it stays hidden until the engine starts)
+     ================================ -->
+<div id="mainSite">
+
+<header class="nav">
+  <a class="logo" href="#home"><i class="logoMark"></i><span>SS CARS<small>Drive Dreams. Live Passion.</small></span></a>
+  <nav class="navlinks"><a href="#home">Home</a><a href="#browse">Browse Cars</a><a href="#top">Brands</a><a href="#journey">Services</a><a href="#learn">Learn</a><a href="#about">About Us</a></nav>
+  <a class="live" href="#browse">Live Demo</a>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap heroContent">
+    <h1 class="heroTitle">
+      <span class="line dream">CHASE THE DREAM.</span>
+      <span class="line adventure">FEEL THE ADVENTURE.</span>
+      <span class="line thrill">EXPERIENCE THE THRILL.</span>
+      <span class="line extraordinary">DRIVE THE <em>EXTRAORDINARY.</em></span>
+      <span class="line luxury">LIVE THE <em>LUXURY.</em></span>
+    </h1>
+    <p>The cars you love. The knowledge you need.<br>All in one place.</p>
+    <div class="ctas"><a class="primary" href="#browse">Explore Cars&nbsp; ›</a><a class="ghost" href="#learn"><i class="play">▶</i> Play Video</a></div>
+    <div class="stats"><div class="stat"><b>500+</b><span>Cars Available</span></div><div class="stat"><b>50+</b><span>Top Brands</span></div><div class="stat"><b>100+</b><span>Expert Reviews</span></div><div class="stat"><b>10K+</b><span>Happy Customers</span></div></div>
+  </div>
+</section>
+
+<div class="mainGrid">
+<section class="left">
+  <div class="search">
+    <div class="tabs"><span class="active">Search Cars</span><span>New Cars</span><span>Used Cars</span></div>
+    <div class="fields">
+      <div class="field"><label for="homeCategory">Category</label><select id="homeCategory"><option>All Categories</option><option>SUV</option><option>Sedan</option><option>Hatchback</option></select></div>
+      <div class="field"><label for="homeBrand">Make</label><select id="homeBrand"><option>All Makes</option><option>BMW</option><option>Audi</option><option>Mercedes-Benz</option><option>Toyota</option></select></div>
+      <div class="field"><label for="homeModel">Model</label><select id="homeModel"><option>All Models</option><option>M4 Competition</option><option>C-Class</option><option>Q5</option><option>Fortuner</option></select></div>
+      <div class="field"><label for="homeBudget">Budget</label><select id="homeBudget"><option>Min - Max Price</option><option>Under ₹20L</option><option>Under ₹50L</option><option>Under ₹1Cr</option></select></div>
+      <a class="searchBtn" href="#top">Search Cars&nbsp; ⌕</a>
+    </div>
+  </div>
+
+  <div class="trust"><div><b>◉ Verified Cars</b><span>Every car is inspected</span></div><div><b>◉ Best Price</b><span>Get the best deals</span></div><div><b>◉ Easy Finance</b><span>Flexible loan options</span></div><div><b>◉ After Sales Support</b><span>We're with you always</span></div></div>
+
+  <div class="body" id="browse">
+    <div class="sectionHead"><div><h2>Browse by Body Type</h2><p>Not sure which one to choose? We make it easy.</p></div><a class="view" href="#browse">View All →</a></div>
+    <div class="bodyGrid">
+      <div class="bodyCard"><img src="assets/body_suv.jpg" alt="SUV"><div><b>SUV</b><span>Spacious &amp; Powerful</span></div></div>
+      <div class="bodyCard"><img src="assets/body_hatch.jpg" alt="Hatchback"><div><b>Hatchback</b><span>Compact &amp; Practical</span></div></div>
+      <div class="bodyCard"><img src="assets/body_sedan.jpg" alt="Sedan"><div><b>Sedan</b><span>Stylish &amp; Comfortable</span></div></div>
+      <div class="bodyCard"><img src="assets/body_coupe.jpg" alt="Coupe"><div><b>Coupe</b><span>Sporty &amp; Sleek</span></div></div>
+      <div class="bodyCard"><img src="assets/body_convertible.jpg" alt="Convertible"><div><b>Convertible</b><span>Open Air Thrill</span></div></div>
+      <div class="bodyCard"><img src="assets/body_mpv.jpg" alt="MPV"><div><b>MPV</b><span>Space for Everyone</span></div></div>
+    </div>
+  </div>
+
+  <div class="knowledge">
+    <div class="sectionHead"><div><h2>Car Knowledge Hub</h2><p>Learn, compare and make confident decisions.</p></div></div>
+    <div class="knowGrid">
+      <div class="knowCard"><img src="assets/knowledge_compare.jpg"><div><b>Compare Cars</b><p>Compare specs, features & prices side by side</p><a href="#">Compare Now →</a></div></div>
+      <div class="knowCard"><img src="assets/knowledge_maintenance.jpg"><div><b>Car Maintenance</b><p>Tips to keep your car running like new</p><a href="#">Learn More →</a></div></div>
+      <div class="knowCard"><img src="assets/knowledge_glossary.jpg"><div><b>Car Glossary</b><p>Confused by car terms? We explain all</p><a href="#">Explore Terms →</a></div></div>
+      <div class="knowCard"><img src="assets/knowledge_faq.jpg"><div><b>FAQs</b><p>Get answers to the most common questions</p><a href="#">View FAQs →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="right" id="learn">
+  <div class="sectionHead"><div><h2>Learn Before You Drive</h2><p>Simple guides to make you a smart car buyer.</p></div><a class="view" href="#learn">View All Guides&nbsp; →</a></div>
+  <div class="learnGrid">
+    <div class="learnCard"><img src="assets/learn_types.jpg"><div class="txt"><b>Types of Cars</b><p>Sedan, SUV, Hatchback<br>Which one suits you?</p></div><span class="arrow">→</span></div>
+    <div class="learnCard"><img src="assets/learn_features.jpg"><div class="txt"><b>Car Features 101</b><p>ABS, ADAS, Turbo & more<br>Explained simply</p></div><span class="arrow">→</span></div>
+    <div class="learnCard"><img src="assets/learn_engine.jpg"><div class="txt"><b>Understanding Engine</b><p>Petrol, Diesel, Electric<br>What's the difference?</p></div><span class="arrow">→</span></div>
+    <div class="learnCard"><img src="assets/learn_buy.jpg"><div class="txt"><b>Car Buying Guide</b><p>Step by step guide to<br>buy your first car.</p></div><span class="arrow">→</span></div>
+  </div>
+
+  <div class="find"><div><h3>Not Sure What You Need?</h3><p>Answer a few simple questions and we'll recommend the perfect car for you.</p></div><a href="#browse">Find My Car&nbsp; ⌕</a></div>
+
+  <div class="emotion">
+    <div class="sectionHead"><div><h2>Why People<br><em style="color:var(--red)">Fall in Love With Cars?</em></h2><p>It's not just a machine.<br>It's freedom, emotion and memories in motion.</p></div></div>
+    <div class="emotionGrid">
+      <div class="emotionLead" id="about"><h2>WHY PEOPLE<br><span>FALL IN LOVE WITH CARS?</span></h2><p>It's not just a machine. It's freedom, emotion and memories in motion.</p><a class="ghost" href="#journey">Know More →</a></div>
+      <div class="emotionCard"><img src="assets/emotion_freedom.jpg"><div class="emotionText"><b>Freedom</b><span>To explore</span></div></div>
+      <div class="emotionCard"><img src="assets/emotion_emotion.jpg"><div class="emotionText"><b>Emotion</b><span>That connects</span></div></div>
+      <div class="emotionCard"><img src="assets/emotion_performance.jpg"><div class="emotionText"><b>Performance</b><span>That excites</span></div></div>
+      <div class="emotionCard"><img src="assets/emotion_memories.jpg"><div class="emotionText"><b>Memories</b><span>That last forever</span></div></div>
+    </div>
+  </div>
+
+  <div class="top" id="top">
+    <div class="sectionHead"><div><h2>Top Picks for You</h2><p>Handpicked cars loved by our customers.</p></div><a class="view" href="#top">View All Cars →</a></div>
+    <div class="cars">
+      <div class="car"><img src="assets/top_bmw.jpg" alt="BMW M4 Competition"><div class="carInfo"><span class="badge">Featured</span><h3>BMW M4 Competition</h3><div class="price">₹96,00,000</div><div class="spec">2024 &nbsp; Petrol &nbsp; Automatic &nbsp; ★ 4.8</div></div></div>
+      <div class="car"><img src="assets/top_mercedes.jpg" alt="Mercedes C-Class"><div class="carInfo"><span class="badge">New</span><h3>Mercedes C-Class</h3><div class="price">₹62,00,000</div><div class="spec">2024 &nbsp; Diesel &nbsp; Automatic &nbsp; ★ 4.6</div></div></div>
+      <div class="car"><img src="assets/top_audi.jpg" alt="Audi Q5"><div class="carInfo"><span class="badge">New</span><h3>Audi Q5</h3><div class="price">₹70,00,000</div><div class="spec">2024 &nbsp; Petrol &nbsp; Automatic &nbsp; ★ 4.7</div></div></div>
+      <div class="car"><img src="assets/top_toyota.jpg" alt="Toyota Fortuner"><div class="carInfo"><span class="badge">Featured</span><h3>Toyota Fortuner</h3><div class="price">₹44,00,000</div><div class="spec">2024 &nbsp; Diesel &nbsp; Automatic &nbsp; ★ 4.5</div></div></div>
+    </div>
+  </div>
+
+  <div class="stories">
+    <div class="sectionHead"><div><h2 style="color:var(--red)">Real Stories. Real Love.</h2><p>Hear from our car family.</p></div><a class="view" href="#stories">View All Stories</a></div>
+    <div class="storiesGrid">
+      <div class="story"><span class="avatar"></span><b>Rohit Sharma</b><small style="display:block;color:#909aa1;margin-left:31px">Pune</small><div class="stars">★★★★★</div><p>Amazing experience! Found my dream car at the best price.</p></div>
+      <div class="story"><span class="avatar" style="background:linear-gradient(135deg,#d99b7d,#4e2430)"></span><b>Neha Iyer</b><small style="display:block;color:#909aa1;margin-left:31px">Bangalore</small><div class="stars">★★★★★</div><p>The guides and experts here really helped me as a first time buyer.</p></div>
+      <div class="story"><span class="avatar" style="background:linear-gradient(135deg,#8c9b75,#252f26)"></span><b>Arjun Verma</b><small style="display:block;color:#909aa1;margin-left:31px">Delhi</small><div class="stars">★★★★★</div><p>Transparent deal, great support even after the purchase.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="journey wrap" id="journey">
+  <img src="assets/journey_car.jpg">
+  <div class="journeyTxt"><h2>READY TO START YOUR JOURNEY?</h2><p>Your dream car is just a search away.</p><a class="primary" href="#browse">Explore Now</a></div>
+  <div class="steps"><div class="step"><div class="circle">⌕</div>Search</div><div class="step"><div class="circle">♡</div>Compare</div><div class="step"><div class="circle">▣</div>Test Drive</div><div class="step"><div class="circle">▤</div>Buy</div></div>
+</div>
+
+<footer class="footer" id="stories"><div class="footerGrid">
+  <div><div class="logo"><i class="logoMark"></i><span>SS CARS<small>Drive Dreams. Live Passion.</small></span></div></div>
+  <div><h4>Quick Links</h4><a href="#browse">Browse Cars</a><a href="#browse">New Cars</a><a href="#browse">Used Cars</a><a href="#journey">Sell Your Car</a></div>
+  <div><h4>Company</h4><a href="#about">About Us</a><a href="#about">Careers</a><a href="#learn">Blog</a><a href="#journey">Contact Us</a></div>
+  <div><h4>Support</h4><a href="#journey">Help Center</a><a href="#about">Terms &amp; Conditions</a><a href="#about">Privacy Policy</a><a href="#browse">Sitemap</a></div>
+  <div><h4>Stay Updated</h4><p>Get the latest car deals, reviews & tips.</p><div class="subscribe"><input placeholder="Enter your email"><button>Subscribe</button></div></div>
+</div></footer>
+
+</div><!-- /#mainSite -->
+
+<!-- ================================
+     INTRO SCREEN LOGIC (new)
+     ================================ -->
+<script>
+(function(){
+  document.documentElement.classList.add('intro-lock');
+
+  var introScreen = document.getElementById('introScreen');
+  var keyBtn      = document.getElementById('keyBtn');
+  var engineSound = document.getElementById('engineSound');
+  var mainSite    = document.getElementById('mainSite');
+
+  var started = false;
+
+  keyBtn.addEventListener('click', function(){
+    if (started) return;
+    started = true;
+
+    introScreen.classList.add('intro-started');
+
+    // Play the engine sound the user provided
+    try{
+      engineSound.currentTime = 0;
+      var playPromise = engineSound.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function(err){
+          console.warn('Engine sound could not autoplay:', err);
+          // If the browser blocks playback, still open the site after a short delay
+          setTimeout(openSite, 1500);
+        });
+      }
+    }catch(e){
+      console.warn('Engine sound error:', e);
+      setTimeout(openSite, 1500);
+    }
+
+    // Open the site once the engine sound has finished playing
+    engineSound.addEventListener('ended', openSite, { once:true });
+
+    // Safety fallback: in case 'ended' never fires (blocked file, missing mp3, etc.)
+    // adjust 6000 to roughly match your mp3's length in ms
+    setTimeout(openSite, 2300);
+  });
+
+  function openSite(){
+    if (mainSite.classList.contains('site-revealed')) return;
+
+    introScreen.classList.add('intro-hidden');
+
+    setTimeout(function(){
+      introScreen.style.display = 'none';
+      document.documentElement.classList.remove('intro-lock');
+      mainSite.style.display = 'block';
+      mainSite.classList.add('site-revealed');
+      window.scrollTo(0, 0);
+    }, 800); // matches the CSS fade duration on #introScreen
+  }
+})();
+</script>
+
+</body>
+</html>
